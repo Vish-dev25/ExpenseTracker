@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
@@ -40,10 +40,12 @@ const ExpenseForm = () => {
         e.preventDefault();              //we are preventing form from its default behaviour of sending request on click and also page is not reload and we stay on current state page.
 
         const expenseData = {
+            // id: Math.random().toString(),
             title: enteredTitle,
             amount : enteredAmount,
             date : enteredDate,
         };
+        props.onSaveExpenseData(expenseData);
         console.log(expenseData);
         setEnteredTitle('');        //to reset input fields after submit
         setEnteredAmount('');       //This is called two-way binding important
